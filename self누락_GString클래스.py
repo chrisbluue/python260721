@@ -1,3 +1,4 @@
+#전역변수
 strName = "Not Class Member"
 
 class DemoString:
