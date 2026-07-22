@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DemoPage — HTML5 / CSS3 / JavaScript 연습</title>
+  <style>
+    /* 기본 리셋 */
+    :root{
+      --bg:#f6f8fa;
+      --card:#ffffff;
+      --accent:#4f46e5;
+      --muted:#6b7280;
+      --radius:12px;
+      --gap:16px;
+    }
+    *{box-sizing:border-box}
+    body{font-family:Inter,Segoe UI,Arial,sans-serif;margin:0;background:var(--bg);color:#111}
+
+    header{background:linear-gradient(90deg,var(--accent),#06b6d4);color:white;padding:24px}
+    .container{max-width:1100px;margin:24px auto;padding:0 16px}
+
+    /* 레이아웃: 그리드 */
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:var(--gap)}
+
+    /* 카드 스타일 */
+    .card{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:0 6px 18px rgba(15,23,42,0.06)}
+
+    nav{display:flex;gap:12px;align-items:center}
+    nav a{color:rgba(255,255,255,0.95);text-decoration:none;font-weight:600}
+
+    /* 유틸 */
+    h2{margin:0 0 12px}
+    p{margin:0 0 12px;color:var(--muted)}
+
+    /* Flexbox 예제 */
+    .flex-demo{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{background:#eef2ff;color:#3730a3;padding:8px 12px;border-radius:999px;font-weight:600}
+
+    /* 폼 스타일 */
+    form input, form button{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e9ef}
+    form .row{display:flex;gap:8px}
+
+    /* 버튼 */
+    .btn{background:var(--accent);color:white;padding:8px 12px;border-radius:8px;border:none;cursor:pointer}
+    .btn:active{transform:translateY(1px)}
+
+    /* 애니메이션 */
+    .pulse{animation:pulse 2s infinite}
+    @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.03)}100%{transform:scale(1)}}
+
+    /* 반응형 */
+    @media (max-width:900px){
+      .grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <h1 style="margin:0;flex:1">DemoPage — HTML5 · CSS3 · JavaScript</h1>
+        <div>
+          <a href="#structure">구조</a>
+          &nbsp;·&nbsp;
+          <a href="#layout">레이아웃</a>
+          &nbsp;·&nbsp;
+          <a href="#interactive">인터랙티브</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="grid">
+      <section class="card" id="structure">
+        <h2>HTML5 주요 태그</h2>
+        <p>시맨틱 태그: <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;footer&gt;</code></p>
+
+        <h3>미리보기</h3>
+        <p>아래는 간단한 폼, 리스트, 캔버스, 그리고 스크립트 예제입니다.</p>
+
+        <h3>폼 검사 (HTML5)</h3>
+        <form id="demoForm">
+          <label>이름 (필수)</label>
+          <input type="text" id="name" placeholder="이름을 입력하세요" required>
+          <div style="height:8px"></div>
+          <label>이메일 (email 타입 자동 검사)</label>
+          <input type="email" id="email" placeholder="name@example.com" required>
+          <div style="height:8px"></div>
+          <button class="btn" type="submit">제출</button>
+        </form>
+        <p id="formMsg" style="color:green;margin-top:8px"></p>
+
+        <hr>
+        <h3>Canvas (간단한 드로잉)</h3>
+        <canvas id="myCanvas" width="480" height="160" style="width:100%;border-radius:8px;border:1px solid #e6e9ef"></canvas>
+        <p style="font-size:13px;color:var(--muted);margin-top:8px">캔버스에 버튼으로 간단한 애니메이션을 그립니다.</p>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <button class="btn" id="drawBtn">그리기 시작</button>
+          <button class="btn" id="stopBtn" style="background:#ef4444">중지</button>
+        </div>
+      </section>
+
+      <aside class="card" id="interactive">
+        <h2>JavaScript 예제</h2>
+        <p>DOM 조작, 이벤트, fetch, 타이머 예제</p>
+
+        <h3>실시간 시계</h3>
+        <div id="clock" style="font-size:20px;font-weight:700;margin-bottom:8px">--:--:--</div>
+
+        <h3>간단한 할일 추가 (DOM)</h3>
+        <div class="row" style="margin-bottom:8px">
+          <input id="todoInput" placeholder="할일을 입력하세요">
+          <button class="btn" id="addTodo">추가</button>
+        </div>
+        <ul id="todoList" style="padding-left:18px;margin:0"></ul>
+
+        <hr>
+        <h3>원격 인용문 가져오기 (fetch)</h3>
+        <button class="btn" id="getQuote">명언 가져오기</button>
+        <p id="quote" style="margin-top:8px;color:var(--muted)"></p>
+
+        <hr>
+        <h3>CSS3 예시</h3>
+        <div class="flex-demo">
+          <div class="chip pulse">CSS 변수</div>
+          <div class="chip">Flexbox</div>
+          <div class="chip">Grid</div>
+        </div>
+      </aside>
+    </div>
+
+    <section class="card" id="layout" style="margin-top:16px">
+      <h2>레이아웃 & 반응형</h2>
+      <p>아래 예시는 CSS Grid와 Flexbox를 함께 사용한 반응형 레이아웃입니다.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px">
+        <div class="card">
+          <h3>그리드 아이템</h3>
+          <p style="color:var(--muted)">반응형 칸</p>
+        </div>
+        <div class="card">
+          <h3>그리드 아이템</h3>
+          <p style="color:var(--muted)">자동 줄바꿈</p>
+        </div>
+        <div class="card">
+          <h3>그리드 아이템</h3>
+          <p style="color:var(--muted)">미니카드</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // 폼 제출 처리 (HTML5 유효성 검사 이용)
+    const demoForm = document.getElementById('demoForm');
+    const formMsg = document.getElementById('formMsg');
+    demoForm.addEventListener('submit', e=>{
+      e.preventDefault();
+      if (!demoForm.reportValidity()) return;
+      const name = document.getElementById('name').value;
+      formMsg.textContent = `${name}님, 폼이 정상적으로 제출되었습니다.`;
+      setTimeout(()=>formMsg.textContent='',3000);
+      demoForm.reset();
+    });
+
+    // 시계
+    function updateClock(){
+      const el = document.getElementById('clock');
+      const now = new Date();
+      el.textContent = now.toLocaleTimeString();
+    }
+    setInterval(updateClock,1000);
+    updateClock();
+
+    // 간단한 할일 추가
+    const todoInput = document.getElementById('todoInput');
+    const addTodo = document.getElementById('addTodo');
+    const todoList = document.getElementById('todoList');
+    addTodo.addEventListener('click',()=>{
+      const v = todoInput.value.trim();
+      if(!v) return; 
+      const li = document.createElement('li');
+      li.textContent = v;
+      li.style.cursor = 'pointer';
+      li.addEventListener('click',()=> li.style.textDecoration = 'line-through');
+      todoList.appendChild(li);
+      todoInput.value = '';
+    });
+
+    // fetch 예제: 공용 인용문 API 사용
+    document.getElementById('getQuote').addEventListener('click', async ()=>{
+      const qEl = document.getElementById('quote');
+      qEl.textContent = '로딩 중...';
+      try{
+        const res = await fetch('https://api.quotable.io/random');
+        if(!res.ok) throw new Error('네트워크 오류');
+        const data = await res.json();
+        qEl.textContent = `"${data.content}" — ${data.author}`;
+      }catch(err){
+        qEl.textContent = '인용문을 가져오지 못했습니다.';
+      }
+    });
+
+    // Canvas 애니메이션
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+    let animId=null;let x=0;let dir=1;
+    function draw(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      ctx.fillStyle = '#4f46e5';
+      ctx.beginPath();
+      ctx.arc(60 + x,80,24,0,Math.PI*2);
+      ctx.fill();
+      x += dir*2; if(x>320 || x<0) dir *= -1;
+      animId = requestAnimationFrame(draw);
+    }
+    document.getElementById('drawBtn').addEventListener('click',()=>{ if(!animId) draw(); });
+    document.getElementById('stopBtn').addEventListener('click',()=>{ if(animId) { cancelAnimationFrame(animId); animId=null; } });
+
+    // 페이지 로드 간단 안내
+    console.log('DemoPage ready — HTML5/CSS3/JS 연습 파일입니다.');
+  </script>
+</body>
+</html>
